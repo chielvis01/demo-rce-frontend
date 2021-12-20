@@ -15,7 +15,7 @@ export interface FEMAApplication {
 }
 
 export interface FetchTodosAction {
-  type: ActionTypes.fetchTodos;
+  type: ActionTypes.fetchApplications;
   payload: FEMAApplication[];
 }
 
@@ -29,7 +29,7 @@ export const fetchTodos = () => {
 
       const response = await axios.get<FEMAApplication[]>(url);
       dispatch<FetchTodosAction>({
-        type: ActionTypes.fetchTodos,
+        type: ActionTypes.fetchApplications,
         payload: response.data
       });
   };
