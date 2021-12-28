@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect} from 'react-redux';
-import {FEMAApplication, fetchApplications,  deleteApplications } from '../actions';
+import { connect } from 'react-redux';
+import {FEMAApplication, fetchApplications,  deleteApplications, addAApplication } from '../actions';
 import {StoreState } from '../reducers';
 import CSS from 'csstype';
 
@@ -15,6 +15,7 @@ interface AppProps {
   applications: FEMAApplication[];
   fetchApplications: Function;
   deleteApplications: typeof deleteApplications;
+  // addaApplication: typeof addAApplication;
 }
 
 class _App extends React.Component<AppProps>{
@@ -43,6 +44,12 @@ class _App extends React.Component<AppProps>{
 
     this.props.deleteApplications(id);
   }
+
+  // onAddClick = (): void =>{
+  //   if (this.props.addaApplication){
+  //     this.props.addaApplication(-1);
+  //   }
+  // }
 
   onViewClick= (id: number): void =>{
 
@@ -230,5 +237,5 @@ const mapStateToProps = (state: StoreState) => {
 
 export const App = connect(
   mapStateToProps, 
-  {fetchApplications, deleteApplications}
+  {fetchApplications, deleteApplications, addAApplication}
 )(_App);

@@ -1,5 +1,5 @@
 
-import { FEMAApplication, FetchApplicationsAction, Action } from '../actions/index';
+import { FEMAApplication, FetchApplicationsAction, Action, AddApplicationAction } from '../actions/index';
 import { ActionTypes } from '../actions/types';
 
 export const applicationReducers = (state: FEMAApplication[] = [], action: Action) => {
@@ -14,7 +14,12 @@ export const applicationReducers = (state: FEMAApplication[] = [], action: Actio
       else{
       return state.filter((todo: FEMAApplication) => todo.id !== action.payload);
       }
-      
+    // case ActionTypes.addOneApplications:  
+    //   if (action.payload === -1){
+    //     return state.filter((todo: FEMAApplication) => todo.id !== action.payload || todo.id === action.payload);
+    //   }else{
+    //     return action.payload;
+    //   }
     default:
       return state;
   }
