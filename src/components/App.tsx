@@ -163,7 +163,8 @@ export class _App extends React.Component<AppProps>{
       status: status
     };
     console.log(application);
-    this.props.applications.unshift(application);
+    // this.props.applications.unshift(application);
+    this.props.addAApplication(application);
     console.log(this.props.applications);
     this.apiSync.save(application).then((response: AxiosResponse): void =>{
         console.log(`save success for ${application} with response ${response.data}`);
@@ -172,7 +173,7 @@ export class _App extends React.Component<AppProps>{
       console.log(`save error for application ${application}`);
     });
     this.displayElements.push(<tr><td>{application.ApplicantName}</td><td>{application.status? "Active": "Inactive"}</td><td><button onClick={()=>this.onDeleteClick(application.id)}>del</button><button onClick={()=>this.onViewClick(application.id)}>View</button></td> </tr>);
-    this.props.deleteApplications(-1);
+    // this.props.deleteApplications(-1);
     this.newClick();
   };
 
