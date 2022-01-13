@@ -46,13 +46,8 @@ export const EditForm: React.FunctionComponent<FormProps> = ({id: number,
   return <div style={div1style}>
 <form onSubmit={onSubmit}>
   <GridContainer containerSize="mobile">
-    {/* <Grid row>
-      <Grid col={leftGridSize}>Id: </Grid>
-      <Grid col={rightGridSize}></Grid>
-    </Grid> */}
     <Grid row>
       <Grid col={leftGridSize}>Applicant Name:</Grid>
-      {/* <Grid col={rightGridSize}><input type='text' name='appName'></input></Grid> */}
       <Grid col={rightGridSize}><TextInput style={textInputstyle} id='appName' value={appName} onChange={(e)=>setAppName(e.target.value)} type='text' name='appName' placeholder='Applicant name' autoCapitalize='off' autoCorrect='off'/></Grid>
     </Grid>
     <Grid row>

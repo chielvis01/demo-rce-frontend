@@ -1,8 +1,6 @@
-import { ApplicationInfoInterface } from "../story/ApplicationInfo";
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import { EditForm } from "../story/EditBox";
-import React from "react";
 import { FEMAApplication } from "../actions";
 
 
@@ -72,6 +70,8 @@ describe("test Edit Form", ()=>{
     const submitButton = screen.getByText('Submit');
     fireEvent.click(submitButton);
     expect(onSubmit).toBeCalledTimes(1);
+    fireEvent.click(submitButton);
+    expect(onSubmit).toBeCalledTimes(2);
   });
 
 })

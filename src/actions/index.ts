@@ -32,6 +32,11 @@ export interface AddApplicationAction {
   payload: FEMAApplication;
 }
 
+export interface EditApplicationAction {
+  type: ActionTypes.editOneApplication;
+  payload: FEMAApplication;
+}
+
 export const fetchApplications = (fetchurl:string) => {
   return async (dispatch: Dispatch)=>{
 
@@ -61,5 +66,12 @@ export const addAApplication = (application: FEMAApplication): AddApplicationAct
   };
 }
 
-export type Action = FetchApplicationsAction | DeleteApplicationAction | AddApplicationAction;
+export const editAApplication = (application: FEMAApplication): EditApplicationAction =>{
+  return {
+    type: ActionTypes.editOneApplication,
+    payload: application
+  };
+}
+
+export type Action = FetchApplicationsAction | DeleteApplicationAction | AddApplicationAction | EditApplicationAction;
 export * from './types';

@@ -1,4 +1,4 @@
-import axios, {AxiosResponse, AxiosPromise} from 'axios';
+import axios, {AxiosPromise} from 'axios';
 
 export const url = 'http://localhost:5001/applications';
 

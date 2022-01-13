@@ -1,6 +1,6 @@
 
 import { FEMAApplication, FetchApplicationsAction, Action } from '../actions/index';
-import { ActionTypes } from '../actions/types';
+import { ActionTypes } from '../actions';
 
 export const applicationReducers = (state: FEMAApplication[] = [], action: Action) => {
 
@@ -17,7 +17,15 @@ export const applicationReducers = (state: FEMAApplication[] = [], action: Actio
     case ActionTypes.addOneApplications:
       state.push(action.payload);
       return state;
-      
+    case ActionTypes.editOneApplication:
+      if (action.payload.id){
+        let foundApplication: FEMAApplication | undefined = state.find(a=>a.id === action.payload.id);
+        if (foundApplication){
+          foundApplication.ApplicantName = action.payload.ApplicantName;
+          foundApplication.status = action.payload.status;
+        }
+      }
+      return state;
     default:
       return state;
   }

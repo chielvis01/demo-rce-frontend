@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect} from 'react-redux';
-import {FEMAApplication, fetchApplications,  deleteApplications, addAApplication } from '../actions';
+import {FEMAApplication, fetchApplications,  deleteApplications, addAApplication, editAApplication } from '../actions';
 import {StoreState } from '../reducers';
 import CSS from 'csstype';
 import { ApiSync } from './ApiSync';
@@ -25,6 +25,7 @@ export interface AppProps {
   fetchApplications: Function;
   deleteApplications: typeof deleteApplications;
   addAApplication: typeof addAApplication;
+  editAApplication: typeof editAApplication
 }
 
 export class _App extends React.Component<AppProps>{
@@ -192,6 +193,12 @@ export class _App extends React.Component<AppProps>{
     if (application!== undefined){
       application.ApplicantName = appName;
       application.status = status;
+      // const revisedApplication: FEMAApplication = {
+      //   id:application.id,
+      //   ApplicantName: appName,
+      //   status: status
+      // }
+      // this.props.editAApplication(revisedApplication);
       console.log(`edit application id: ${application.id}`);
       this.apiSync.save(application).then((response: AxiosResponse): void =>{
         console.log(`edit success for ${application} with response ${response.data}`);
@@ -256,7 +263,6 @@ export class _App extends React.Component<AppProps>{
   }
   
   render() {
-      // console.log(this.props.applications);
       const {showingNew: showingNew} = this.state;
       const {showingDetail: showingDetail} = this.state;
       const {showingEdit: showingEdit} = this.state;
@@ -297,5 +303,5 @@ const mapStateToProps = (state: StoreState) => {
 
 export const App = connect(
   mapStateToProps, 
-  {fetchApplications, deleteApplications, addAApplication},
+  {fetchApplications, deleteApplications, addAApplication, editAApplication},
 )(_App);

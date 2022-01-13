@@ -1,5 +1,5 @@
 import {FEMAApplication} from '../actions';
-import { Button, GridContainer, Grid } from '@trussworks/react-uswds';
+import { GridContainer, Grid } from '@trussworks/react-uswds';
 import '@trussworks/react-uswds/lib/uswds.css';
 import '@trussworks/react-uswds/lib/index.css';
 import CSS from 'csstype';
@@ -10,8 +10,6 @@ const div1style : CSS.Properties  = {
   marginTop: '50px',
   height: 'auto'
 };
-
-const testContent = 'content';
 
 const leftGridSize = 8;
 
@@ -56,14 +54,5 @@ export const ViewBox = ({id,
     </Grid>
   </GridContainer>
   </div>;
-        // <div>
-        //   <div>Details:</div>
-        //   <div>Id: &nbsp;{id}</div>
-        //   <div>Applicant Name: &nbsp;{ApplicantName}</div>
-        //   <div>Application Status: &nbsp;{status? 'Active' : 'Inactive'}</div>
-        //   <div>Address: &nbsp;{Address}</div>
-        //   <div>Email: &nbsp;{email}</div>
-        //   <div>State: &nbsp;{State}</div>
-        //   <div>Zip: &nbsp;{ZIP}</div>
-        // </div>
+     
 }

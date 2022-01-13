@@ -1,5 +1,5 @@
 
-import { fetchApplications, deleteApplications} from '../actions';
+import { fetchApplications, deleteApplications, addAApplication, FEMAApplication} from '../actions';
 import React from 'react';
 import { render, screen, RenderResult, fireEvent } from '@testing-library/react';
 import ReactDom from 'react-dom';
@@ -10,17 +10,36 @@ import {App} from '../components/App';
 import {reducers} from '../reducers';
 
 const store = createStore(reducers, applyMiddleware(thunk));
-
+let state = store.getState().applications;
+let applicantName : string = "Test applicant name";
 describe('Test store operations', () => {
 
   it("Initial store has empty applications", ()=>{
-    let state = store.getState().applications;
+    
     expect(state).toHaveLength(0);
   });
 
   it("add an application", ()=>{
-    let state = store.getState().applications;
-    expect(state).toHaveLength(0);
+    const application: FEMAApplication = {
+      "Address": "YL40B8Ngz2",
+    "ApplicantName": applicantName,
+    "State": "BXSYxysDG9",
+    "ZIP": 43229,
+    "email": "lsjfbx@effrs.wx",
+    "id": 3,
+    "status": true
+    };
+    store.dispatch(addAApplication(application));
+    expect(state).toHaveLength(1);
+  });
+
+  it("search an application", ()=>{
+    const findApplication = state.find((application) => application.id === 3);
+    expect(findApplication?.ApplicantName).toEqual(applicantName);
+  })
+
+  it("edit an application", ()=>{
+
   });
   
   // const unchangedBook = state.applicationList.find((book) => book.id === '1');
