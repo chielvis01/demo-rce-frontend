@@ -5,13 +5,13 @@ import {StoreState } from '../reducers';
 import CSS from 'csstype';
 import { ApiSync } from './ApiSync';
 import { AxiosResponse } from 'axios';
-import {ApplicationInfo, ApplicationInfoInterface} from '../story/ApplicationInfo';
+import {ApplicationInfo} from '../story/ApplicationInfo';
 import { ApplicationList } from './ApplicationList';
 import { ViewBox} from '../story/ViewBox';
 import { Formbox } from '../story/FormView';
 import { EditForm } from '../story/EditBox';
 
-export const url = 'http://localhost:5001/applications';
+export const url:string = 'http://localhost:5001/applications';
 // export const url = 'http://localhost:5001/applications';
 
 const div1style : CSS.Properties  = {
@@ -24,6 +24,7 @@ export interface AppProps {
   applications: FEMAApplication[];
   fetchApplications: Function;
   deleteApplications: typeof deleteApplications;
+  addAApplication: typeof addAApplication;
 }
 
 export class _App extends React.Component<AppProps>{
@@ -37,12 +38,12 @@ export class _App extends React.Component<AppProps>{
     currentId: -1
   };
 
-  public apiSync: ApiSync<FEMAApplication> = new ApiSync<FEMAApplication>(url);
+  public apiSync : ApiSync<FEMAApplication> = new ApiSync<FEMAApplication>(url);
 
   displayElements: JSX.Element[] = [];
 
   buttonClick= (): void => {
-    this.props.fetchApplications();
+    this.props.fetchApplications(url);
   }
 
   newClick = (): void =>{
@@ -95,30 +96,10 @@ export class _App extends React.Component<AppProps>{
     // console.log('render now');
     if (this.props && this.props.applications){
 
-      // const elementList: ApplicationInfoInterface[] = this.props.applications.map((application: FEMAApplication)=>
-      // { 
-      //   const model: ApplicationInfoInterface =
-      //   {
-      //     "Address": "YL40B8Ngz2",
-      //     "ApplicantName": "DWrXltczwi-123",
-      //     "State": "BXSYxysDG9",
-      //     "ZIP": 43229,
-      //     "email": "lsjfbx@effrs.wx",
-      //     "id": 3,
-      //     "status": true
-      //   };
-      //   return model;
-      // }
-
-      //   );
+     
       this.displayElements= this.props.applications.map((applications: FEMAApplication) =>
 
       {
-        // return <tr><td>{applications.ApplicantName} </td><td>{applications.status? "Active": "Inactive"}</td><td>
-        //   <button onClick={()=>this.onDeleteClick(applications.id)}>Del</button>
-        //   <button onClick={()=>this.onViewClick(applications.id)}>View</button>
-        //   <button onClick={()=>this.onEditClick(applications.id)}>Edit</button></td>
-        //   </tr>;
         return <ApplicationInfo ApplicantName={applications.ApplicantName} 
         status={applications.status} 
         delAction={()=>this.onDeleteClick(applications.id)}
@@ -145,16 +126,6 @@ export class _App extends React.Component<AppProps>{
     }
     const application= this.props.applications.find(a=>a.id === this.state.currentId);
     if (application !== undefined){
-      // return <div>
-      //   <div>Details:</div>
-      //   <div>Id: &nbsp;{application.id}</div>
-      //   <div>Applicant Name: &nbsp;{application.ApplicantName}</div>
-      //   <div>Application Status: &nbsp;{application.status? 'Active' : 'Inactive'}</div>
-      //   <div>Address: &nbsp;{application.Address}</div>
-      //   <div>Email: &nbsp;{application.email}</div>
-      //   <div>State: &nbsp;{application.State}</div>
-      //   <div>Zip: &nbsp;{application.ZIP}</div>
-      //   </div>
       return <ViewBox id ={application.id} 
         ApplicantName={application.ApplicantName} 
         Address={application.Address}  
@@ -262,20 +233,8 @@ export class _App extends React.Component<AppProps>{
     if (application !== undefined){
       console.log(`state applicant name is ${this.state.appNameData} and status is ${this.state.statusData}`);
       return <div>
-        <div>Application Information:</div>
-        
-        {/* <form onSubmit={this.onEditSubmit}>         
-        <div>Id: &nbsp;{application.id}</div>
-        <div>Applicant Name: &nbsp;<input type='text' name='appName' value={this.state.appNameData} onChange={(e) => this.setState({appNameData: e.target.value})}></input></div>
-        <div>Application Status: &nbsp;<input type='checkbox' checked={this.state.statusData} name='status'  onChange={(e) => this.setState({statusData: e.target.checked})}></input></div>
-        <div><button type='submit'>Submit</button></div> */}
-        {/* <form onSubmit={this.onEditSubmit}>         
-        <div>Id: &nbsp;{application.id}</div>
-        <div>Applicant Name: &nbsp;<input type='text' name='appName' value={this.state.appNameData} onChange={this.onAppNameChange}></input></div>
-        
-        <div>Application Status: &nbsp;<input type='checkbox' checked={this.state.statusData} name='status'  onChange={this.onStatusChange}></input></div>
-        <div><button type='submit'>Submit</button></div>
-        </form> */}
+        <div>Application Information:</div>        
+       
         <EditForm 
         ApplicantName={this.state.appNameData} 
         Address={application.Address}  
@@ -305,14 +264,7 @@ export class _App extends React.Component<AppProps>{
         <div style={div1style}>
         <button onClick={this.buttonClick}>Get list</button>&nbsp;&nbsp;<button onClick={this.newClick}>New</button>
       <div style={{ display: (showingNew ? 'block' : 'none') }}>
-            {/* <form  onSubmit={this.onNewSubmit}>
-              
-        <table>
-          <tr><td>Applicant name</td><td><input type='text' name='appName'></input></td></tr>
-          <tr><td>Status</td><td><input type='checkbox' name='status'></input></td></tr>
-          <tr><td><button type='submit'>Submit</button></td></tr>
-        </table>
-        </form> */}
+            
         <Formbox onSubmit={this.onNewSubmit} children=''/>
       </div>
       <table>
@@ -337,10 +289,12 @@ export class _App extends React.Component<AppProps>{
 
 
 const mapStateToProps = (state: StoreState) => {
-  return {applications: state.applications};
+  return {
+    applications: state.applications
+  };
 }
 
 export const App = connect(
   mapStateToProps, 
-  {fetchApplications, deleteApplications}
+  {fetchApplications, deleteApplications, addAApplication},
 )(_App);

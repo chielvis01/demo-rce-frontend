@@ -29,13 +29,13 @@ export interface DeleteApplicationAction {
 
 export interface AddApplicationAction {
   type: ActionTypes.addOneApplications;
-  payload: number;
+  payload: FEMAApplication;
 }
 
-export const fetchApplications = () => {
+export const fetchApplications = (fetchurl:string) => {
   return async (dispatch: Dispatch)=>{
 
-      const response = await axios.get<FEMAApplication[]>(url, {
+      const response = await axios.get<FEMAApplication[]>(fetchurl, {
         params: {
           limit: 20
          }
@@ -54,10 +54,10 @@ export const deleteApplications = (id: number): DeleteApplicationAction =>{
   };
 }
 
-export const addAApplication = (id: number): AddApplicationAction =>{
+export const addAApplication = (application: FEMAApplication): AddApplicationAction =>{
   return {
     type: ActionTypes.addOneApplications,
-    payload: id
+    payload: application
   };
 }
 

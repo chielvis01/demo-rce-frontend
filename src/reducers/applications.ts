@@ -14,6 +14,9 @@ export const applicationReducers = (state: FEMAApplication[] = [], action: Actio
       else{
       return state.filter((todo: FEMAApplication) => todo.id !== action.payload);
       }
+    case ActionTypes.addOneApplications:
+      state.push(action.payload);
+      return state;
       
     default:
       return state;
