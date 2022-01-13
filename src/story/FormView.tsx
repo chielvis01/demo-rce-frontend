@@ -53,7 +53,7 @@ export const Formbox = ({id,
     </Grid>
     <Grid row>
       <Grid col={leftGridSize}>Status:</Grid>
-      <Grid col={rightGridSize}><Checkbox id="checkbox" name="checkbox" label='' title='abc'/></Grid>
+      <Grid col={rightGridSize}><Checkbox id="status" name="status" label='' title='abc'/></Grid>
     </Grid>
     <Grid row>
       <Grid col={12}><Button type='submit'>Submit</Button></Grid>
