@@ -54,8 +54,8 @@ describe('Test store operations', () => {
 
   it("delete an application", ()=>{
     store.dispatch(deleteApplications(findId));
-    const state: StoreState = store.getState();
-    expect(state.applications).toHaveLength(0);
+    const state = store.getState().applications;
+    expect(state).toHaveLength(0);
   })
   
   

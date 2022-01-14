@@ -21,19 +21,16 @@ const renderAnApplication = (application: ApplicationInfoInterface): RenderResul
     editAction={()=>console.log(application.id)} />);
 
 
-// test("Render ApplicationInfo correctly", ()=>{
-
-//     render(<ApplicationInfo ApplicantName={applications.ApplicantName} 
-//       status={applications.status} 
-//       delAction={()=>console.log(applications.id)}
-//       viewAction={()=>console.log(applications.id)}
-//       editAction={()=>console.log(applications.id)} />);
-    
-//     const rendered = screen.getByRole("contentinfo");
-//     expect(rendered).toBeInTheDocument();
-// });
-
 describe("test ApplicationInfo", ()=>{
+
+  it("Render ApplicationInfo with View buttons", ()=>{
+    renderAnApplication(applications);
+
+    const viewButton = screen.getByText("View");
+    expect(viewButton).toBeInTheDocument();
+
+  });
+
   it("Render ApplicationInfo with Delete buttons", ()=>{
     renderAnApplication(applications);
     const delButton = screen.getByText("Del");

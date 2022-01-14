@@ -12,7 +12,6 @@ import { Formbox } from '../story/FormView';
 import { EditForm } from '../story/EditBox';
 
 export const url:string = 'http://localhost:5001/applications';
-// export const url = 'http://localhost:5001/applications';
 
 const div1style : CSS.Properties  = {
     width: '600',
@@ -77,7 +76,6 @@ export class _App extends React.Component<AppProps>{
 
     const {showingEdit: showingEdit} = this.state;
     console.log(`current id = ${id}`);
-
     
     this.setState({ showingEdit: !showingEdit, currentId: id });
     const application= this.props.applications.find(a=>a.id === id);
@@ -94,12 +92,9 @@ export class _App extends React.Component<AppProps>{
   }
 
   renderList(){
-    // console.log('render now');
     if (this.props && this.props.applications){
-
      
       this.displayElements= this.props.applications.map((applications: FEMAApplication) =>
-
       {
         return <ApplicationInfo ApplicantName={applications.ApplicantName} 
         status={applications.status} 
@@ -121,7 +116,6 @@ export class _App extends React.Component<AppProps>{
   }
 
   renderView(): JSX.Element {
-    // console.log(`render view for id = ${ this.state.currentId}`);
     if (!this.props || !this.props.applications){
       return <div></div>;
     }
@@ -151,9 +145,7 @@ export class _App extends React.Component<AppProps>{
     
     console.log(e.target);
     const appName: string = target.appName.value; // typechecks!
-    const status: boolean = target.status.checked// typechecks! 
-    const newId: number = Math.floor(Math.random() * 9000)+1000;   
-    // const application: FEMAApplication = {};
+    const status: boolean = target.status.checked// typechecks!  
     const application:FEMAApplication = 
     {   
       Address: '123 main st',
@@ -164,7 +156,6 @@ export class _App extends React.Component<AppProps>{
       status: status
     };
     console.log(application);
-    // this.props.applications.unshift(application);
     this.props.addAApplication(application);
     console.log(this.props.applications);
     this.apiSync.save(application).then((response: AxiosResponse): void =>{
@@ -174,7 +165,7 @@ export class _App extends React.Component<AppProps>{
       console.log(`save error for application ${application}`);
     });
     this.displayElements.push(<tr><td>{application.ApplicantName}</td><td>{application.status? "Active": "Inactive"}</td><td><button onClick={()=>this.onDeleteClick(application.id)}>del</button><button onClick={()=>this.onViewClick(application.id)}>View</button></td> </tr>);
-    // this.props.deleteApplications(-1);
+    
     this.newClick();
   };
 
@@ -195,12 +186,6 @@ export class _App extends React.Component<AppProps>{
     if (application!== undefined){
       application.ApplicantName = appName;
       application.status = status;
-      // const revisedApplication: FEMAApplication = {
-      //   id:application.id,
-      //   ApplicantName: appName,
-      //   status: status
-      // }
-      // this.props.editAApplication(revisedApplication);
       console.log(`edit application id: ${application.id}`);
       this.apiSync.save(application).then((response: AxiosResponse): void =>{
         console.log(`edit success for ${application} with response ${response.data}`);
@@ -244,13 +229,7 @@ export class _App extends React.Component<AppProps>{
       console.log(`state applicant name is ${this.state.appNameData} and status is ${this.state.statusData}`);
       return <div>
         <div>Application Information:</div>        
-        {/* <form onSubmit={this.onEditSubmit}>         
-        <div>Id: &nbsp;{application.id}</div>
-        <div>Applicant Name: &nbsp;<input type='text' name='appName' value={this.state.appNameData} onChange={this.onAppNameChange}></input></div>
         
-        <div>Application Status: &nbsp;<input type='checkbox' checked={this.state.statusData} name='status'  onChange={this.onStatusChange}></input></div>
-        <div><button type='submit'>Submit</button></div>
-        </form> */}
         <EditForm 
         ApplicantName={this.state.appNameData} 
         Address={application.Address}  
@@ -282,8 +261,7 @@ export class _App extends React.Component<AppProps>{
       </div>
       <table>
       {this.renderList()}
-      </table>
-      
+      </table>      
       </div>
       </td>
       <td style={{verticalAlign: 'top'}}>
