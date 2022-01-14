@@ -1,10 +1,6 @@
-import { ApplicationInfo, ApplicationInfoInterface } from "../story/ApplicationInfo";
-import { render, screen, RenderResult, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import { ViewBox } from "../story/ViewBox";
-import { FEMAApplication } from "../actions";
 import { Formbox } from "../story/FormView";
-import React from "react";
 
 
 describe("test form box", ()=>{

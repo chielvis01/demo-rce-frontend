@@ -11,12 +11,12 @@
     },
     {
       "Address": "IdkFugItnW",
-      "ApplicantName": "CSx4A4JrOm",
+      "ApplicantName": "CSx4A4JrOm-ops",
       "State": "nAfHkXOzAq",
       "ZIP": 31393,
       "email": "hthctux@xkqfd.af",
       "id": 2,
-      "status": false
+      "status": true
     },
     {
       "Address": "YL40B8Ngz2",
@@ -47,7 +47,7 @@
     },
     {
       "Address": "wa4DJg8N2y",
-      "ApplicantName": "YADtgZHpt7",
+      "ApplicantName": "YADtgZHpt7-123",
       "State": "PYGAhIOXs9",
       "ZIP": 98780,
       "email": "jjpjzff@gmota.fe",
@@ -74,48 +74,12 @@
     },
     {
       "Address": "hLwLmlEWpj",
-      "ApplicantName": "vN0Y6yPptg",
+      "ApplicantName": "vN0Y6yPptg-12321",
       "State": "R7rwiKVN8w",
       "ZIP": 25885,
       "email": "ttcoaay@inkar.ek",
       "id": 9,
-      "status": true
-    },
-    {
-      "Address": "VGqE1WEJFN",
-      "ApplicantName": "IDUkNqHqif",
-      "State": "otfSxONNcE",
-      "ZIP": 54661,
-      "email": "yixjr@cctns.wy",
-      "id": 10,
-      "status": true
-    },
-    {
-      "Address": "123 main st",
-      "State": "virginia",
-      "email": "test@test.com",
-      "ZIP": 22030,
-      "ApplicantName": "gfdsgfds-1234567",
-      "status": false,
-      "id": 11
-    },
-    {
-      "Address": "123 main st",
-      "State": "virginia",
-      "email": "test@test.com",
-      "ZIP": 22030,
-      "ApplicantName": "099891",
-      "status": true,
-      "id": 12
-    },
-    {
-      "Address": "123 main st",
-      "State": "virginia",
-      "email": "test@test.com",
-      "ZIP": 22030,
-      "ApplicantName": "fdsas987-afdsa",
-      "status": true,
-      "id": 13
+      "status": false
     }
   ]
 }

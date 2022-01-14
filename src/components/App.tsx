@@ -181,6 +181,8 @@ export class _App extends React.Component<AppProps>{
   onEditSubmit = (e: React.FormEvent<HTMLFormElement>): void =>{
     
     e.preventDefault();
+    console.log("Edit form object");
+    console.log(e);
     const target = e.target as typeof e.target & {
       appName: { value: string };
       status: { checked: boolean };
@@ -242,7 +244,13 @@ export class _App extends React.Component<AppProps>{
       console.log(`state applicant name is ${this.state.appNameData} and status is ${this.state.statusData}`);
       return <div>
         <div>Application Information:</div>        
-       
+        {/* <form onSubmit={this.onEditSubmit}>         
+        <div>Id: &nbsp;{application.id}</div>
+        <div>Applicant Name: &nbsp;<input type='text' name='appName' value={this.state.appNameData} onChange={this.onAppNameChange}></input></div>
+        
+        <div>Application Status: &nbsp;<input type='checkbox' checked={this.state.statusData} name='status'  onChange={this.onStatusChange}></input></div>
+        <div><button type='submit'>Submit</button></div>
+        </form> */}
         <EditForm 
         ApplicantName={this.state.appNameData} 
         Address={application.Address}  
@@ -251,8 +259,6 @@ export class _App extends React.Component<AppProps>{
         ZIP = {application.ZIP}
         status= {this.state.statusData}
         onSubmit={this.onEditSubmit} 
-        onStatusChange={this.onStatusChange}
-        onAppNameChange={this.onAppNameChange}
         children=''/>
         </div>
     }
