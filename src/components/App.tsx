@@ -10,11 +10,18 @@ import { ApplicationList } from './ApplicationList';
 import { ViewBox} from '../story/ViewBox';
 import { Formbox } from '../story/FormView';
 import { EditForm } from '../story/EditBox';
+import { Button, GridContainer, Grid, TextInput, Checkbox } from '@trussworks/react-uswds';
+import '@trussworks/react-uswds/lib/uswds.css';
+import '@trussworks/react-uswds/lib/index.css';
 
 export const url:string = 'http://localhost:5001/applications';
 
+export const leftGridSize = 5;
+export const midGridSize = 1;
+export const rightGridSize = 6;
+
 const div1style : CSS.Properties  = {
-    width: '600',
+    width: '800px',
     display: 'inline-block',
     height: 'auto'
 };
@@ -28,6 +35,8 @@ export interface AppProps {
 }
 
 export class _App extends React.Component<AppProps>{
+
+ 
 
   state = {
     showingNew: false,
@@ -105,7 +114,13 @@ export class _App extends React.Component<AppProps>{
       });
       if (this.displayElements.length>0){
       this.displayElements.unshift(
-        <tr><td>Applicant Name</td><td>Status</td><td>Action</td></tr>);
+        <Grid row>
+          <Grid col={leftGridSize}>Applicant Name:</Grid>
+          <Grid col={midGridSize}>Status</Grid>
+          <Grid col={rightGridSize}>Action</Grid>
+        </Grid>);
+    
+        // <tr><td>Applicant Name</td><td>Status</td><td>Action</td></tr>);
       }
       return this.displayElements;
     }
@@ -259,9 +274,9 @@ export class _App extends React.Component<AppProps>{
             
         <Formbox onSubmit={this.onNewSubmit} children=''/>
       </div>
-      <table>
+      <div style={div1style}>
       {this.renderList()}
-      </table>      
+      </div>      
       </div>
       </td>
       <td style={{verticalAlign: 'top'}}>
