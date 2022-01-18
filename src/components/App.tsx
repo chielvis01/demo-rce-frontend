@@ -10,7 +10,7 @@ import { ApplicationList } from './ApplicationList';
 import { ViewBox} from '../story/ViewBox';
 import { Formbox } from '../story/FormView';
 import { EditForm } from '../story/EditBox';
-import { Button, GridContainer, Grid, TextInput, Checkbox } from '@trussworks/react-uswds';
+import { Button, GridContainer, Grid, TextInput, Checkbox, Header, Title, NavMenuButton, PrimaryNav, Search } from '@trussworks/react-uswds';
 import '@trussworks/react-uswds/lib/uswds.css';
 import '@trussworks/react-uswds/lib/index.css';
 
@@ -20,10 +20,18 @@ export const leftGridSize = 5;
 export const midGridSize = 1;
 export const rightGridSize = 6;
 
+const mockSubmit = ()=>{};
+
 const div1style : CSS.Properties  = {
     width: '800px',
     display: 'inline-block',
     height: 'auto'
+};
+
+const div2style : CSS.Properties  = {
+  width: '1000px',
+  display: 'inline-block',
+  height: 'auto'
 };
 
 export interface AppProps {
@@ -267,6 +275,22 @@ export class _App extends React.Component<AppProps>{
       const {showingDetail: showingDetail} = this.state;
       const {showingEdit: showingEdit} = this.state;
       return <div>
+         <Header basic={true}>
+        <div className="usa-nav-container" style={div2style}>
+          <div className="usa-navbar">
+            <Title>Recovery Cloud Environment</Title>
+            <NavMenuButton label="Menu" />
+          </div>
+          <div><Search size="small" onSubmit={mockSubmit} /></div>
+          
+          {/* <PrimaryNav
+            items={['menu']}
+            mobileExpanded={true}
+            >
+            
+          </PrimaryNav> */}
+        </div>
+      </Header>
         <table><tr><td>
         <div style={div1style}>
         <button onClick={this.buttonClick}>Get list</button>&nbsp;&nbsp;<button onClick={this.newClick}>New</button>
